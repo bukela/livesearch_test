@@ -47460,11 +47460,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      query: '',
+      query: "",
       results: [],
       temp: []
     };
@@ -47478,8 +47492,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this = this;
 
       this.results = [];
-      if (this.query.length > 2) {
-        axios.get('/api/search', { params: { query: this.query } }).then(function (response) {
+      if (this.query.length > 1) {
+        axios.get("/api/search", { params: { query: this.query } }).then(function (response) {
           _this.results = response.data;
         });
       } else {
@@ -47489,7 +47503,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     getall: function getall() {
       var _this2 = this;
 
-      axios.get('/api/search').then(function (response) {
+      axios.get("/getusers").then(function (response) {
         _this2.results = _this2.temp = response.data;
       }).catch(function (error) {
         return _this2.errors = error.response.data.errors;
@@ -47530,24 +47544,42 @@ var render = function() {
       }
     }),
     _vm._v(" "),
-    _vm.results.length
-      ? _c("div", { staticClass: "panel-footer" }, [
-          _c(
-            "ul",
-            { staticClass: "list-group" },
-            _vm._l(_vm.results, function(result) {
-              return _c(
-                "li",
-                { key: result.id, staticClass: "list-group-item" },
-                [_vm._v("\n    " + _vm._s(result.name) + "\n   ")]
-              )
-            })
-          )
-        ])
-      : _vm._e()
+    _c("table", [
+      _c(
+        "tbody",
+        _vm._l(_vm.results, function(result) {
+          return _c("tr", { key: result.id }, [
+            _c("td", { staticClass: "table-client" }, [
+              _vm._v(_vm._s(result.id))
+            ]),
+            _vm._v(" "),
+            _c("td", { staticClass: "table-number" }, [
+              _vm._v(_vm._s(result.name))
+            ]),
+            _vm._v(" "),
+            _c("td", { staticClass: "table-text" }, [
+              _vm._v(_vm._s(result.email))
+            ]),
+            _vm._v(" "),
+            _vm._m(0, true)
+          ])
+        })
+      )
+    ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", { staticClass: "table-text has-text-centered" }, [
+      _c("a", { attrs: { href: "#" } }, [
+        _c("i", { staticClass: "fa fa-eye edit-ico" })
+      ])
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
